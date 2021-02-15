@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleag.org"> <!-- 타임리프 템플렛 엔진 -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p th:text = "'hello' + ${name}"> hello! empty </p>
+<!-- 타임리프의 장점
+    <p th:text = "'hello' + ${name}"> hello! empty </p>
+    파일 경도를 그대로 보기 - 페이지 소스보기
+    html 을 그대로 쓰고 서버없이 열어봐도 껍대기를 볼수있다
+    <p th:text = "'hello' + ${name}"> -> 여기 안의 값으로
+    <p>hello! empty </p> 안의 내용이 치환
+        - 서버없이 그냥 html 을 볼때 markup
+-->
+
+</body>
+</html>
