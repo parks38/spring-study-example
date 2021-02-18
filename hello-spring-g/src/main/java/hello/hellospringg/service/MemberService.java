@@ -2,10 +2,13 @@ package hello.hellospringg.service;
 
 import hello.hellospringg.domain.Member;
 import hello.hellospringg.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -15,7 +18,9 @@ public class MemberService {
      *  직접 new를 만들어주지 않고 외부에서 memberRepository를 넣어준다
      * @param memberRepository
      */
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
+
         this.memberRepository = memberRepository;
     }
 
