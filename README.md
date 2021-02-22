@@ -7,4 +7,7 @@
 | hello-spring-g  | 스프링빈 과  의존관계  | 02/18/21|https://www.notion.so/ssunsoolzip/2d47e83e97e84cf6a7b46e296be65ed8|
 | hello-spring-g  | 회원 관리 예제 MVC  | 02/19 - 02/20|https://www.notion.so/ssunsoolzip/MVC-3764c89269cd494a89c7eed36a52510b|
 | hello-spring-g  | 회원 관리 예제 MVC - 조회하기  |02/22 |https://www.notion.so/ssunsoolzip/MVC-3764c89269cd494a89c7eed36a52510b|
+| hello-spring-g  | 스프링 DB 접근 - H2, Jdbc, JPA  |02/22 |https://www.notion.so/ssunsoolzip/DB-2a411d47102b4d829b259bfc69b769bb|
+
+
 

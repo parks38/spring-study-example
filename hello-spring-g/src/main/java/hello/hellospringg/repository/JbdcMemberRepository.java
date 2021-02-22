@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class JbdcMemberRepository implements MemberRepository{
+public class JbdcMemberRepository implements MemberRepository {
 
     private final DataSource dataSource;
 
@@ -23,14 +23,14 @@ public class JbdcMemberRepository implements MemberRepository{
         String sql = "insert into member(name) values (?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs  = null;
+        ResultSet rs = null;
 
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, member.getName());
             pstmt.executeUpdate();
-            if(rs.next()) {
+            if (rs.next()) {
                 member.setId(rs.getLong(1));
             } else {
                 throw new SQLException("id 조회 실패 ");
@@ -45,32 +45,41 @@ public class JbdcMemberRepository implements MemberRepository{
 
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
         try {
-            if(rs != null) {
+            if (rs != null) {
                 rs.close();
             }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        try{
-            if(pstmt != null){
-                pstmt.close();
-            }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         try {
-            if(conn != null) {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (conn != null) {
                 conn.close();
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+
+    /**
+     * DataSiourceUtils 를 통해 데이터 받아오기
+     * @return
+     */
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
+    }
+
+    private void close(Connection conn) throws SQLException {
+        DataSourceUtils.releaseConnection(conn, dataSource);
     }
 
 
@@ -79,7 +88,7 @@ public class JbdcMemberRepository implements MemberRepository{
         String sql = "select * from member where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs  = null;
+        ResultSet rs = null;
 
         try {
             conn = getConnection();
@@ -88,7 +97,7 @@ public class JbdcMemberRepository implements MemberRepository{
 
             rs = pstmt.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -96,14 +105,11 @@ public class JbdcMemberRepository implements MemberRepository{
             } else {
                 return Optional.empty();
             }
-            return member;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
             close(conn, pstmt, rs);
         }
-
-        return Optional.empty();
     }
 
     @Override
@@ -111,16 +117,16 @@ public class JbdcMemberRepository implements MemberRepository{
         String sql = "select * from member where name = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs  = null;
+        ResultSet rs = null;
 
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, name);
+            pstmt.setString(1, name);
 
             rs = pstmt.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -128,14 +134,11 @@ public class JbdcMemberRepository implements MemberRepository{
             } else {
                 return Optional.empty();
             }
-            return member;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
             close(conn, pstmt, rs);
         }
-
-        return Optional.empty();
     }
 
     @Override
@@ -143,7 +146,7 @@ public class JbdcMemberRepository implements MemberRepository{
         String sql = "select * from member";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs  = null;
+        ResultSet rs = null;
 
         try {
             conn = getConnection();
@@ -152,7 +155,7 @@ public class JbdcMemberRepository implements MemberRepository{
             rs = pstmt.executeQuery();
 
             List<Member> members = new ArrayList<>();
-            while(rs.next()) {
+            while (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -165,4 +168,5 @@ public class JbdcMemberRepository implements MemberRepository{
             close(conn, pstmt, rs);
         }
     }
+
 }
