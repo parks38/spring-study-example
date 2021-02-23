@@ -8,6 +8,8 @@
 | hello-spring-g  | 회원 관리 예제 MVC  | 02/19 - 02/20|https://www.notion.so/ssunsoolzip/MVC-3764c89269cd494a89c7eed36a52510b|
 | hello-spring-g  | 회원 관리 예제 MVC - 조회하기  |02/22 |https://www.notion.so/ssunsoolzip/MVC-3764c89269cd494a89c7eed36a52510b|
 | hello-spring-g  | 스프링 DB 접근 - H2, Jdbc, JPA  |02/22 |https://www.notion.so/ssunsoolzip/DB-2a411d47102b4d829b259bfc69b769bb|
+| hello-spring-g  | AOP  |02/23 |https://www.notion.so/ssunsoolzip/AOP-697e337498cb4e5d94976908350e7755|
+
 
 
 
