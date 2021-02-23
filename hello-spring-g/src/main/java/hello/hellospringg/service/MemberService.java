@@ -4,11 +4,13 @@ import hello.hellospringg.domain.Member;
 import hello.hellospringg.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //@Service
+@Transactional  //JPA 이용시 꼭 필요
 public class MemberService {
     private final MemberRepository memberRepository;
 
